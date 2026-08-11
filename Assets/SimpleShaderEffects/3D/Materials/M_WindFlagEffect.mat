@@ -33,12 +33,12 @@ Material:
     - _GustStrength: 0.25
     - _PoleStiffness: 2
     - _SecondaryWaveStrength: 0.2
-    - _Speed: 1
+    - _Speed: 0.38
     - _VerticalFlutter: 0.053
     - _WaveFrequency: 3
-    - _WindStrength: 0.25
+    - _WindStrength: 0.195
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _WindDirection: {r: 1, g: 1, b: 0, a: 0}
+    - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

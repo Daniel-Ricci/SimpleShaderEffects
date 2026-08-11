@@ -28,9 +28,9 @@ Shader "Custom/S_BuffEffect"
     SubShader
     {
         Tags {
+            "RenderPipeline" = "UniversalPipeline"
             "RenderType" = "Transparent"
             "Queue" = "Transparent"
-            "RenderPipeline" = "UniversalPipeline"
         }
 
         Pass
@@ -66,15 +66,15 @@ Shader "Custom/S_BuffEffect"
             struct MeshData
             {
                 float4 vertex : POSITION;
-                float3 normals : NORMAL;
+                float3 normal : NORMAL;
                 float2 uv : TEXCOORD0;
             };
 
             struct Interpolators
             {
                 float4 vertex : SV_POSITION;
-                float3 normalWS : TEXCOORD0;
                 float3 positionWS : TEXCOORD1;
+                float3 normalWS : TEXCOORD0;
                 float2 uv : TEXCOORD2;
             };
 
@@ -82,7 +82,7 @@ Shader "Custom/S_BuffEffect"
             {
                 Interpolators OUT;
                 OUT.vertex = TransformObjectToHClip(IN.vertex.xyz);
-                OUT.normalWS = TransformObjectToWorldNormal(IN.normals);
+                OUT.normalWS = TransformObjectToWorldNormal(IN.normal);
                 OUT.positionWS = TransformObjectToWorld(IN.vertex.xyz);
                 OUT.uv = IN.uv;
                 return OUT;
@@ -121,7 +121,7 @@ Shader "Custom/S_BuffEffect"
                 outColor.rgb += _RingColor.rgb * ring * _RingIntensity;
 
                 outColor.rgb += _FresnelColor.rgb * fresnel * _FresnelIntensity;
-                outColor.a = clamp((waveEffect + ring * _RingAlphaBoost) * transparencyGradient, 0, 0.25f);
+                outColor.a = /*clamp(*/(waveEffect + ring * _RingAlphaBoost) * transparencyGradient;//, 0, 0.25f);
                 
                 return outColor ;
             }
